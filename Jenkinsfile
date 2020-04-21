@@ -4,20 +4,24 @@ pipeline {
     agent any
     stages {
         stage('Build Parameters') {
-            steps {
-                script{
-                    properties(
-                            parameters(
-                                    string(
-                                            defaultValue: 'v5.4.23',
-                                            description: 'Enter the app version for current release',
-                                            name: 'APP_VERSION',
-                                            trim: true
-                                    )
-                            )
-                    )
+        steps {
+            sh '''stage(\'Build Parameters\')
+                steps {
+                    script{
+                        properties(
+                                parameters(
+                                        string(
+                                                defaultValue: 'v5.4.23',
+                                                description: 'Enter the app version for current release',
+                                                name: 'APP_VERSION',
+                                                trim: true
+                                        )
+                                )
+                        )
+                    }
                 }
             }
+        }
         }
         stage('Code Freeze') {
             steps {
