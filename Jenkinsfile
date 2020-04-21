@@ -4,24 +4,20 @@ pipeline {
     agent any
     stages {
         stage('Build Parameters') {
-        steps {
-            sh '''stage(\'Build Parameters\')
-                steps {
-                    script{
-                        properties(
-                                parameters(
-                                        string(
-                                                defaultValue: 'v5.4.23',
-                                                description: 'Enter the app version for current release',
-                                                name: 'APP_VERSION',
-                                                trim: true
-                                        )
-                                )
-                        )
-                    }
+            steps {
+                script{
+                    properties(
+                            parameters(
+                                    string(
+                                        defaultValue: \'v5.4.23\',
+                                        description: \'Enter the app version for current release\',
+                                        name: \'APP_VERSION\',
+                                        trim: true
+                                    )
+                            )
+                    )
                 }
             }
-        }
         }
         stage('Code Freeze') {
             steps {
@@ -29,7 +25,7 @@ pipeline {
                 echo "Wait for code freeze"
                 input 'Code Freeze : Please provide input whether we should Proceed or Abort'
                 echo "Set access rights for release branch"
-                echo "App version : v5.4.23"
+                echo "App version : 5.4.23"
 //                 slackSend channel: '#tech-gurgaon', color: 'good', message: "Code Freeze is done for the release v${APP_VERSION}"
             }
         }
