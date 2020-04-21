@@ -1,7 +1,5 @@
 import jenkins.model.*
 import hudson.model.*
-import jenkins.model.*
-jenkins = Jenkins.instance
 pipeline {
     agent any
     stages {
@@ -27,8 +25,8 @@ pipeline {
                 echo "Wait for code freeze"
                 input 'Code Freeze : Please provide input whether we should Proceed or Abort'
                 echo "Set access rights for release branch"
-                echo "App version : ${APP_VERSION}"
-                slackSend channel: '#tech-gurgaon', color: 'good', message: "Code Freeze is done for the release v${APP_VERSION}"
+                echo "App version : v5.4.23"
+//                 slackSend channel: '#tech-gurgaon', color: 'good', message: "Code Freeze is done for the release v${APP_VERSION}"
             }
         }
         stage('Build android apk') {
@@ -37,7 +35,7 @@ pipeline {
                 input 'building apk : Please provide input whether we should Proceed or Abort'
                 echo "Wait for build of an apk"
                 echo "Archive apk"
-                slackSend channel: '#bug_zilla', color: 'good', message: "Android .apk  is build for the release v${APP_VERSION}"
+//                 slackSend channel: '#bug_zilla', color: 'good', message: "Android .apk  is build for the release v${APP_VERSION}"
             }
         }
         stage('Backend Deployment') {
@@ -46,7 +44,7 @@ pipeline {
                 echo "Wait for Backend Deployment"
                 input 'Backend deployment : Please provide input whether we should Proceed or Abort'
                 echo "Triggering job for deployment on stage"
-                slackSend channel: '#tech-gurgaon', color: 'good', message: "Backend Deployment is done for the release v${APP_VERSION}"
+//                 slackSend channel: '#tech-gurgaon', color: 'good', message: "Backend Deployment is done for the release v${APP_VERSION}"
             }
 
         }
