@@ -3,22 +3,22 @@ import hudson.model.*
 pipeline {
     agent any
     stages {
-        stage('Build Parameters') {
-            steps {
-                script{
-                    properties(
-                            parameters(
-                                    string(
-                                            defaultValue: 'v5.4.23',
-                                            description: 'Enter the app version for current release',
-                                            name: 'APP_VERSION',
-                                            trim: true
-                                    )
-                            )
-                    )
-                }
-            }
-        }
+//         stage('Build Parameters') {
+//             steps {
+//                 script{
+//                     properties(
+//                             parameters(
+//                                     string(
+//                                             defaultValue: 'v5.4.23',
+//                                             description: 'Enter the app version for current release',
+//                                             name: 'APP_VERSION',
+//                                             trim: true
+//                                     )
+//                             )
+//                     )
+//                 }
+//             }
+//         }
         stage('Code Freeze') {
             steps {
                 echo "Created release branch for all branches"
