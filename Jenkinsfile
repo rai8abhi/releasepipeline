@@ -1,5 +1,7 @@
 import jenkins.model.*
 import hudson.model.*
+import jenkins.model.*
+jenkins = Jenkins.instance
 pipeline {
     agent any
     stages {
