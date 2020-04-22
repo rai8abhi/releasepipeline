@@ -1,5 +1,9 @@
 import jenkins.model.*
 import hudson.model.*
+
+def slackMessage
+def slackChannel
+
 pipeline {
     agent any
     stages {
@@ -26,7 +30,7 @@ pipeline {
                 input 'Code Freeze : Please provide input whether we should Proceed or Abort'
                 echo "Set access rights for release branch"
                 echo "App version : 5.4.23"
-                slackSend channel: '#tech-gurgaon', color: 'good', message: "Code Freeze is done for the release v${APP_VERSION}"
+                slackSend channel: '#Abhishek', color: 'good', message: "Code Freeze is done for the release v5.4.23"
             }
         }
         stage('Build android apk') {
@@ -35,7 +39,7 @@ pipeline {
                 input 'building apk : Please provide input whether we should Proceed or Abort'
                 echo "Wait for build of an apk"
                 echo "Archive apk"
-                slackSend channel: '#bug_zilla', color: 'good', message: "Android .apk  is build for the release v${APP_VERSION}"
+                slackSend channel: '#bug_zilla', color: 'good', message: "Android .apk  is build for the release v5.4.23"
             }
         }
         stage('Backend Deployment') {
@@ -44,7 +48,7 @@ pipeline {
                 echo "Wait for Backend Deployment"
                 input 'Backend deployment : Please provide input whether we should Proceed or Abort'
                 echo "Triggering job for deployment on stage"
-                slackSend channel: '#tech-gurgaon', color: 'good', message: "Backend Deployment is done for the release v${APP_VERSION}"
+                slackSend channel: '#Abhishek', color: 'good', message: "Backend Deployment is done for the release v5.4.23"
             }
         }
         stage('Testing on stage') {
@@ -55,7 +59,7 @@ pipeline {
                         echo "Wait for automation report"
                         input 'Automated API Suite [Stage] : Please provide input whether we should Proceed or Abort'
                         echo "Analyse report"
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Automated API Suite [Stage] is Passed for the release v${APP_VERSION}"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Automated API Suite [Stage] is Passed for the release v5.4.23"
                     }
                 }
 
@@ -65,7 +69,7 @@ pipeline {
                         echo "Wait for automation report"
                         input 'Automation Suite : Please provide input whether we should Proceed or Abort'
                         echo "Analyse report"
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Automated Regression suite is Passed for the release v${APP_VERSION}"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Automated Regression suite is Passed for the release v5.4.23"
                     }
                 }
                 stage('Manual Exploratory testing') {
@@ -73,7 +77,7 @@ pipeline {
                         echo "Send mail/slack message to testers with build link"
                         echo "Wait for manual sign off"
                         input 'After completing manual exploratory testing, please provide input whether we should Proceed or Abort'
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Manual Exploaratory testing is Completed v${APP_VERSION}"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Manual Exploaratory testing is Completed v5.4.23"
                     }
                 }
             }
@@ -86,7 +90,7 @@ pipeline {
                         echo "Wait for web-automation report"
                         input 'Web automation Suite : Please provide input whether we should Proceed or Abort'
                         echo "Analyse report"
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Web-automated Regression suite is Passed for the release"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Web-automated Regression suite is Passed for the release"
                     }
                 }
                 stage('Manual Exploratory testing on web') {
@@ -94,7 +98,7 @@ pipeline {
                         echo "Send mail/slack message to testers with build link"
                         echo "Wait for manual sign off"
                         input 'After completing manual exploratory testing, please provide input whether we should Proceed or Abort'
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Manual Exploaratory testing is Completed on stage web"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Manual Exploaratory testing is Completed on stage web"
                     }
                 }
                 stage('Manual Exploratory testing on iOS') {
@@ -102,7 +106,7 @@ pipeline {
                         echo "Send mail/slack message to testers with build link"
                         echo "Wait for manual sign off"
                         input 'After completing manual exploratory testing, please provide input whether we should Proceed or Abort'
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Manual Exploaratory testing is Completed on iOS"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Manual Exploaratory testing is Completed on iOS"
                     }
                 }
             }
@@ -113,7 +117,7 @@ pipeline {
                 echo "Wait for Open bugs"
                 input 'Open Bugs : Please provide input whether we should Proceed or Abort'
                 echo "Communicate open bugs to team"
-                slackSend channel: '#tech-gurgaon', color: 'good', message: "Verify open Bugs:- there is no open/blocker bug on common stage env for the release v${APP_VERSION}"
+                slackSend channel: '#Abhishek', color: 'good', message: "Verify open Bugs:- there is no open/blocker bug on common stage env for the release v5.4.23"
             }
         }
         stage('Sign off') {
@@ -122,14 +126,14 @@ pipeline {
                     steps {
                         echo "Wait for manual sign off from QA"
                         input 'QA sign off : Please provide input whether we should Proceed or Abort'
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "QA Signoff for the release v${APP_VERSION} is done"
+                        slackSend channel: '#Abhishek', color: 'good', message: "QA Signoff for the release v5.4.23 is done"
                     }
                 }
                 stage('Security sign off') {
                     steps {
                         echo "Wait for manual sign off from security"
                         input 'Security sign off : Please provide input whether we should Proceed or Abort'
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Security Signoff for the release v${APP_VERSION} is done"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Security Signoff for the release v5.4.23 is done"
                     }
 
                 }
@@ -137,7 +141,7 @@ pipeline {
                     steps {
                         echo "Wait for manual sign off from design"
                         input 'Design sign off : Please provide input whether we should Proceed or Abort'
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Design Signoff for the release v${APP_VERSION} is done"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Design Signoff for the release v5.4.23 is done"
                     }
                 }
             }
@@ -148,7 +152,7 @@ pipeline {
                         echo "Wait for Backend Deployment on Production"
                         input 'Back End Deployment on Prod: Please provide input whether we should Proceed or Abort'
                         echo "Deploy backend to production "
-                        slackSend channel: '#tech-gurgaon', color: 'good', message: "Backend Deployment on Prod is completed for app v${APP_VERSION}"
+                        slackSend channel: '#Abhishek', color: 'good', message: "Backend Deployment on Prod is completed for app v5.4.23"
                     }
                 }
         stage('Build release apk') {
@@ -157,7 +161,7 @@ pipeline {
                 echo "Wait for release apk"
                 input 'Build Release apk : Please provide input whether we should Proceed or Abort'
                 echo "Archive apk"
-                slackSend channel: '#tech-gurgaon', color: 'good', message: "release build v${APP_VERSION} has been made and shared with the stakeholders"
+                slackSend channel: '#Abhishek', color: 'good', message: "release build v5.4.23 has been made and shared with the stakeholders"
             }
         }
         stage('Sanity on Prod')
@@ -170,7 +174,7 @@ pipeline {
                                 echo "Wait for automation report"
                                 input 'Automated API Suite [Production] : Please provide input whether we should Proceed or Abort'
                                 echo "Analyse report"
-                                slackSend channel: '#tech-gurgaon', color: 'good', message: "Automated API Suite [Production] is Passed for the release v${APP_VERSION}"
+                                slackSend channel: '#Abhishek', color: 'good', message: "Automated API Suite [Production] is Passed for the release v5.4.23"
                             }
                         }
 
@@ -180,7 +184,7 @@ pipeline {
                                 echo "Wait for automated sanity"
                                 input 'Sanity Automation : Please provide input whether we should Proceed or Abort'
                                 echo "Analyse report"
-                                slackSend channel: '#tech-gurgaon', color: 'good', message: "Automated sanity suite on Prod is Passed on App v${APP_VERSION}"
+                                slackSend channel: '#Abhishek', color: 'good', message: "Automated sanity suite on Prod is Passed on App v5.4.23"
                             }
                         }
                         stage('Exploratory Sanity testing') {
@@ -188,7 +192,7 @@ pipeline {
                                 echo "Send mail/slack message to testers with build link"
                                 echo "Wait for manual sign off"
                                 input 'After completing manual exploratory testing, please provide input whether we should Proceed or Abort'
-                                slackSend channel: '#tech-gurgaon', color: 'good', message: "Exploratory sanity testing on Prod is completed for v${APP_VERSION}"
+                                slackSend channel: '#Abhishek', color: 'good', message: "Exploratory sanity testing on Prod is completed for v5.4.23"
                             }
                         }
                     }
@@ -199,7 +203,7 @@ pipeline {
                 echo "Fail pipeline if critical bugs are open"
                 input 'Verify Bugs : Please provide input whether we should Proceed or Abort'
                 echo "Communicate open bugs to team"
-               slackSend channel: '#tech-gurgaon', color: 'good', message: "Verify open bugs:- there are no open/blocker bugs on prod for the release v${APP_VERSION}"
+               slackSend channel: '#Abhishek', color: 'good', message: "Verify open bugs:- there are no open/blocker bugs on prod for the release v5.4.23"
             }
         }
         stage('Upload apk to play store') {
@@ -207,14 +211,14 @@ pipeline {
                 echo "Wait to upload an apk"
                 echo "Apk to play store"
                 input 'Upload apk to playstore 5% rollout : Please provide input whether we should Proceed or Abort'
-                slackSend channel: '#tech-gurgaon', color: 'good', message: "Release build v${APP_VERSION} is uplaoded on playstore with 5% rollout"
+                slackSend channel: '#Abhishek', color: 'good', message: "Release build v5.4.23 is uplaoded on playstore with 5% rollout"
             }
         }
         stage('Release note update') {
             steps {
                 echo "Wait for release note to be updated"
                 input 'Release note update for the given release : Please provide input whether we should Proceed or Abort'
-                slackSend channel: '#tech-gurgaon', color: 'good', message: "Release note updated for the v${APP_VERSION}done"
+                slackSend channel: '#Abhishek', color: 'good', message: "Release note updated for the v5.4.23done"
             }
         }
     }
