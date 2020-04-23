@@ -13,9 +13,9 @@ pipeline {
                     properties([
                         parameters([
                             string(
-                                defaultValue: 'master',
-                                description: 'branch name of api suit git repo',
-                                name: 'BRANCH_NAME',
+                                defaultValue: 'v5.4.25',
+                                description: 'Enter the app version for this release',
+                                name: 'APP_VERSION',
                                 trim: true
                             )
                         ])
@@ -29,7 +29,7 @@ pipeline {
                 echo "Wait for code freeze"
                 input 'Code Freeze : Please provide input whether we should Proceed or Abort'
                 echo "Set access rights for release branch"
-                echo "App version : 5.4.23"
+                echo "App version : ${APP_VERSION}"
 //                 slackSend channel: '#Abhishek', color: 'good', message: "Code Freeze is done for the release v5.4.23"
             }
         }
