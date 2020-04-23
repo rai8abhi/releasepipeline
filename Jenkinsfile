@@ -30,7 +30,7 @@ pipeline {
                 input 'Code Freeze : Please provide input whether we should Proceed or Abort'
                 echo "Set access rights for release branch"
                 echo "App version : 5.4.23"
-                slackSend channel: '#Abhishek', color: 'good', message: "Code Freeze is done for the release v5.4.23"
+//                 slackSend channel: '#Abhishek', color: 'good', message: "Code Freeze is done for the release v5.4.23"
             }
         }
         stage('Build android apk') {
@@ -39,7 +39,7 @@ pipeline {
                 input 'building apk : Please provide input whether we should Proceed or Abort'
                 echo "Wait for build of an apk"
                 echo "Archive apk"
-                slackSend channel: '#bug_zilla', color: 'good', message: "Android .apk  is build for the release v5.4.23"
+//                 slackSend channel: '#bug_zilla', color: 'good', message: "Android .apk  is build for the release v5.4.23"
             }
         }
         stage('Backend Deployment') {
@@ -48,7 +48,7 @@ pipeline {
                 echo "Wait for Backend Deployment"
                 input 'Backend deployment : Please provide input whether we should Proceed or Abort'
                 echo "Triggering job for deployment on stage"
-                slackSend channel: '#Abhishek', color: 'good', message: "Backend Deployment is done for the release v5.4.23"
+//                 slackSend channel: '#Abhishek', color: 'good', message: "Backend Deployment is done for the release v5.4.23"
             }
         }
         stage('Testing on stage') {
@@ -59,7 +59,7 @@ pipeline {
                         echo "Wait for automation report"
                         input 'Automated API Suite [Stage] : Please provide input whether we should Proceed or Abort'
                         echo "Analyse report"
-                        slackSend channel: '#Abhishek', color: 'good', message: "Automated API Suite [Stage] is Passed for the release v5.4.23"
+//                         slackSend channel: '#Abhishek', color: 'good', message: "Automated API Suite [Stage] is Passed for the release v5.4.23"
                     }
                 }
 
