@@ -8,19 +8,15 @@ pipeline {
     agent any
     stages {
         stage('Build Parameters') {
-            steps {
+            steps{
                 script{
-                    properties([
-                            parameters([
-                                    string(
-                                           echo "checking that this block should work"
-//                                         defaultValue: 'v5.4.23',
-//                                         description: 'Enter the app version for current release',
-//                                         name: 'APP_VERSION',
-//                                         trim: true
-                                    )
-                            ])
-                    ])
+                    properties(
+                        parameters(
+                            string(
+                                echo "this the testing text"
+                            )
+                        )
+                    )
                 }
             }
         }
