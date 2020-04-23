@@ -11,14 +11,14 @@ pipeline {
             steps{
                 script{
                     properties(
-                        parameters(
+                        parameters([
                             string(
                                 defaultValue: 'master',
                                 description: 'branch name of api suit git repo',
                                 name: 'BRANCH_NAME',
                                 trim: true
                             )
-                        )
+                        ])
                     )
                 }
             }
