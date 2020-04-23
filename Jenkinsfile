@@ -10,17 +10,17 @@ pipeline {
         stage('Build Parameters') {
             steps {
                 script{
-                    properties(
-                            parameters(
+                    properties([
+                            parameters([
                                     string(
-                                            echo "checking that this block should work"
+                                           echo "checking that this block should work"
 //                                         defaultValue: 'v5.4.23',
 //                                         description: 'Enter the app version for current release',
 //                                         name: 'APP_VERSION',
 //                                         trim: true
                                     )
-                            )
-                    )
+                            ])
+                    ])
                 }
             }
         }
