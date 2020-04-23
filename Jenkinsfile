@@ -7,22 +7,22 @@ def slackChannel
 pipeline {
     agent any
     stages {
-        stage('Build Parameters') {
-            steps{
-                script{
-                    properties(
-                        parameters([
-                            string(
-                                defaultValue: 'master',
-                                description: 'branch name of api suit git repo',
-                                name: 'BRANCH_NAME',
-                                trim: true
-                            )
-                        ])
-                    )
-                }
-            }
-        }
+//         stage('Build Parameters') {
+//             steps{
+//                 script{
+//                     properties(
+//                         parameters([
+//                             string(
+//                                 defaultValue: 'master',
+//                                 description: 'branch name of api suit git repo',
+//                                 name: 'BRANCH_NAME',
+//                                 trim: true
+//                             )
+//                         ])
+//                     )
+//                 }
+//             }
+//         }
         stage('Code Freeze') {
             steps {
                 echo "Created release branch for all branches"
