@@ -13,9 +13,9 @@ pipeline {
                     properties(
                             parameters(
                                     string(
-                                        defaultValue: \'v5.4.23\',
-                                        description: \'Enter the app version for current release\',
-                                        name: \'APP_VERSION\',
+                                        defaultValue: 'v5.4.23',
+                                        description: 'Enter the app version for current release',
+                                        name: 'APP_VERSION',
                                         trim: true
                                     )
                             )
