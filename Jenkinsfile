@@ -13,7 +13,10 @@ pipeline {
                     properties(
                         parameters(
                             string(
-                                echo "this the testing text"
+                                defaultValue: 'master',
+                                description: 'branch name of api suit git repo',
+                                name: 'BRANCH_NAME',
+                                trim: true
                             )
                         )
                     )
